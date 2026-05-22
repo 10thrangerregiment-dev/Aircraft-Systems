@@ -14,15 +14,15 @@
 
 ## About
 
-The **10th Ranger Regiment** is happy to present **Aircraft Systems** — a mod that brings the data systems, situational awareness, and quality-of-life features Arma 3 pilots took for granted into Arma Reforger.
+The **10th Ranger Regiment** is happy to present **Aircraft Systems** - a mod that brings the data systems, situational awareness, and quality-of-life features Arma 3 pilots took for granted into Arma Reforger.
 
-Everything's packaged to work together out of the box, but the features are loosely coupled — developers can unlink whichever pieces they don't want for their own airframes.
+Everything's packaged to work together out of the box, but the features are loosely coupled, developers can unlink whichever pieces they don't want for their own airframes.
 
 ---
 
-## ✨ Features
+##  Features
 
-### 🎯 Targeting Pod (TGP)
+###  Targeting Pod (TGP)
 
 A pilot-accessible, full-screen stabilized camera that keeps you in full control of the aircraft and its weapons.
 
@@ -32,12 +32,12 @@ A pilot-accessible, full-screen stabilized camera that keeps you in full control
 - **Slew to grid** or **slew to map click**
 - **Area + point geolock** — pin the camera to a spot and fly around it
 - **HADS marker placement** with a toggleable in-view overlay; synced across maps and other pilots' overlays in multiplayer
-- **IR Sparkle** — pulsed laser designator visible to NVG-equipped friendlies
+- **IR Sparkle** — Air-to-Ground Laser
 - **Target storage** — store three targets, slew back to them, reference them from the HMD
-- **Terrain avoidance** — predictive ground-trace warning
-- **Configurable settings** for damn near everything
+- **Terrain avoidance** — predictive terrain collision warning
+- **Configurable settings** 
 
-### 🪖 Helmet-Mounted Display (HMD)
+###  Helmet-Mounted Display (HMD)
 
 Out-the-window symbology layered over your forward view.
 
@@ -109,24 +109,28 @@ If you're a mod developer integrating Aircraft Systems into your own aircraft, s
 
 #### What it is
 
-Sit in the pilot seat, wait about a second and a half after the door closes, and press **`T`**. The screen swaps from your normal pilot view to a stabilized camera looking out from the aircraft's gimbal. Think of it as a chin-mounted FLIR ball with a fistful of features bolted on — zoom, thermal, laser designator, target memory, friendly tracking, the lot.
+Sit in the pilot seat, wait about a second and a half after the door closes, and press **`T`**. The screen swaps from your normal pilot view to a stabilized camera looking out from the aircraft's gimbal. This pod comes with many features to aid in ISR/SA.
 
 Press **`T`** again to come back to the cockpit.
 
 > [!IMPORTANT]
-> **You can't disembark while the TGP is open.** Press `T` to close it, then step out. This is intentional — it's saved more than one pilot from bailing out mid-scan.
+> **You can't disembark while the TGP is open.** Press `T` to close it, then step out. This is intentional.
 
 #### Looking around
 
 Mouse moves the camera. So does your head — turn it, and the gimbal follows. The screen-center reticle is where the trace lands; that's your "aim point" for almost everything else in the pod.
+> [!IMPORTANT]
+> **If you fly with mouse input enabled, you must hit ALT and then move mouse.** 
 
 What you'll see on the TGP HUD:
 
-- **Camera mode** in a corner — `CCD` for daylight, `FLIR` when thermal is on
-- **Target coordinates** (MGRS grid), elevation, and distance under the reticle — updated about ten times per second
+- **Camera Zoom** in the top left corner — `CCD` for daylight, `FLIR` when thermal is on
+- **Craft Information** (MGRS grid), altitude, airspeed, autohover
+- **Directional References** On the left side of the screen, you will see a NORTH arrow. This points to NORTH from your point of aim. Underneath that is the camera position. The 12 o'clock of the circle is the front of the aircraft.
+- **Target coordinates** (MGRS grid), elevation, and distance under the reticle
 - **Three target slot panels** (more on those shortly)
 - **Geolock label** when you have a fixed lock
-- A short **"marker placed"** flash whenever you drop one
+- **Sparkle Indicator** Indicates that your sparkle is armed
 
 #### Zoom — two modes in one
 
@@ -138,14 +142,14 @@ The TGP has six FOV stops, widest to narrowest. How they behave depends on the *
 | **All smooth** | Hold `NumPad 5` and the FOV narrows continuously, proportionally — consistent zoom rate whether you're wide or tight. |
 | **Hybrid** | Stepped at wide FOVs (where stepping feels natural), smooth at narrow FOVs (where you want fine control on long-range targets). |
 
-You can also flip on **dynamic smoothing** — when you're zoomed in tight, smooth zoom slows down automatically so you don't over-shoot a 500-meter target.
+You can also flip on **dynamic smoothing** — when you're zoomed in tight, smooth zoom slows down automatically so you don't over-shoot.
 
 > [!TIP]
 > Camera wandered into orbit? Hit **`-`** (numpad minus). It snaps the camera forward and slightly down — same orientation it has when you first open the pod.
 
 #### Slewing to a grid
 
-You know the coordinates, you want the camera there. **`G`** opens a small dialog. Type a 6-digit grid (100 m precision) or 8-digit (10 m precision), hit Enter, and the camera animates to that spot over about a second. No teleport — it pans, so you don't get disoriented.
+You know the coordinates, you want the camera there. **`G`** opens a small dialog. Type a 6-digit grid (100 m precision) or 8-digit (10 m precision), hit Enter, and the camera slews to that spot.
 
 #### Slewing to a map click
 
@@ -153,18 +157,21 @@ You know the coordinates, you want the camera there. **`G`** opens a small dialo
 
 Pressing `Shift+M` while the map's already open closes it. If you accidentally Esc-closed the map without confirming, the next `Shift+M` press picks itself back up cleanly — no need to re-toggle anything.
 
-#### Geolock — pin the camera to a spot
+#### AREA LOCK / GEOLOCK — pin the camera to a spot
 
-Put the reticle on a point in the world and press **`Shift+L`**. The TGP locks onto that world coordinate. From now on, no matter how the helicopter maneuvers, the camera stays pointed at that exact spot. You can fly circles around it while the camera tracks.
+Put the reticle on a point in the world and press **`Shift+L`**. The TGP locks onto that position. From now on, no matter how the helicopter maneuvers, the camera stays pointed at that exact spot. You can fly circles around it while the camera tracks.
 
-Press `Shift+L` again to release. The lock breaks cleanly — the camera doesn't suddenly jump back to nose-forward.
+Press `Shift+L` again to release. The lock breaks in place.
 
-#### Auto-lock — set and forget
+#### POINT LOCK — Automatic, tracking lock
 
-If the reticle lingers on a lockable entity (a vehicle, mostly) for a full second, the TGP automatically locks onto it. Think of it as a softer version of geolock that follows the target rather than the ground. If the target gets destroyed, the lock breaks automatically.
+Orient the reticle onto a vehicle or person, hold it for half a second, and the camera will lock. You know it has locked when the "POINT" display pops up in your lock indicator area. 
+> [!TIP]
+> The best practice is to aim center mass. If you know that you are aiming properly, move the camera around a bit to attempt to get a lock. Laterally moving targets are by far the hardest to lock. 
 
 > [!NOTE]
 > Geolock and auto-lock can't both be on — picking one releases the other.
+
 
 #### Target slots — three points of memory
 
@@ -174,57 +181,58 @@ You can save up to **three target positions** during a sortie.
 - **`NumPad 4`** — cycle which slot is "selected" (the HUD highlights it).
 - **`Shift+Tab`** — slew the camera to the selected slot.
 
-Use them however you like — three targets in priority order, three IPs for a gun run, three friendly positions to keep eyes on in rotation.
+In the current state, there is no preprogramming of these. In the future, that will change. 
+
+> [!NOTE]
+> These interface with the TGT Waypoint Mode on the HMD. The currently selected display will present an on-screen pip, as well as routing information. 
 
 #### Dropping map markers
 
-**`Y`** drops a marker where the reticle's pointing. The marker shows up on everyone's map (server-authoritative — there's no "is my map seeing what your map sees" problem). Each marker gets an auto-numbered label using your two-letter prefix: `HM01`, `HM02`, and so on.
+**`Y`** drops a marker where the reticle's pointing. The marker shows up on everyone's map. Each marker gets an auto-numbered label using your two-letter prefix: `HM01`, `HM02`, and so on.
 
-**`Shift+Y`** toggles an overlay that draws the labels on the TGP camera view, projected to where each marker is in 3D space. Useful for keeping track of designated points while you're scanning around.
+**`Shift+Y`** toggles an overlay that draws the labels on the TGP camera view, projected to where each marker is in 3D space. Useful for keeping track of designated points while you're scanning around. You are able to see other aviator's markers with this overlay. 
 
 You can change your two-letter prefix in the settings dialog (default is `HM`).
 
+
 #### Thermal — `Shift+N`
 
-Toggles FLIR on the camera. Default is a Gen 2 grayscale palette — white-hot, with a configurable mid-contrast level. Daytime defaults are tuned for the natural temperature range, but the display shifts automatically as the sun moves: at noon, the upper end of the range climbs to keep contrast usable.
+Toggles FLIR on the camera. 
 
 **`PageUp`** and **`PageDown`** step the gain manually. The TGP also runs an auto-gain mode that tracks scene radiance — gain hands off cleanly between manual and auto.
 
 #### Sparkle — `Shift+J`
 
-A pulsed IR laser designator. When you point the TGP at a target and toggle sparkle on, the aircraft emits a visible-in-NVG beam from a point just below the gimbal. Anyone with night vision sees the beam **and** the laser dot at the target.
+An IZLID strapped to a helicopter. When you point the TGP at a target and toggle sparkle on, the aircraft emits an IR visible beam from a point just below the gimbal. 
 
-Default is a 2 Hz pulse with 50% duty cycle. The beam tracks wherever the reticle is — slew the camera, the beam follows. Sparkle stays armed when you close the TGP, so you can mark a target then close the pod and fly.
+The beam tracks wherever the reticle is — slew the camera, the beam follows. Sparkle stays armed when you close the TGP, so you can mark a target then close the pod and fly.
 
 > [!NOTE]
-> Sparkle is replicated — other players in the area see the same beam coming off your aircraft.
+> Sparkle remains in place during AREA and POINT lock. So you can lock a target or location, sparkle it, come out of the TGP and meneuver and maintain that sparkle. 
 
-#### BFT — `Shift+B`
+#### Link 16 / Blue Force Tracking — `Shift+B`
 
-Toggles a **Blue Force Tracking** overlay. Friendly players and friendly AI within range get a small icon drawn over their position. When a friendly's in a vehicle, the icon attaches to the vehicle, not the body inside. Helpful when you're trying to spot the difference between "guys I'm supporting" and "guys I should be shooting."
+Toggles a **Blue Force Tracking** overlay. Friendly group leaders display a real-time tracking icon overtop of them. When a friendly's in a vehicle, the icon attaches to the vehicle, not the body inside. 
 
-Range is generous (5 km by default), and the scan runs periodically rather than per-frame, so it doesn't tax the engine even with a packed AO.
+Range is 5km per default. 
 
 #### Terrain warning
 
-Always-on. The TGP looks ahead along the helicopter's velocity vector — about eight seconds of flight time at current speed. If the trace finds ground, the warning lights up. You can configure it three ways in settings: full on (visual + audio), sound off (visual only), or fully off.
+The TGP looks ahead from the front of the helicopter for obstacles. If the helicopter is projected to impact an object within 8 seconds of flight, it will alert you with an audio/visual indicator. You can configure it three ways in settings: full on (visual + audio), sound off (visual only), or fully off.
 
-The trace runs once per second. It's not a substitute for looking out the window, but it'll catch you flying into a ridge during a head-down scan.
+
 
 #### Settings — `Shift+P`
 
 Opens a dialog (only works when the TGP is up) with:
 
-- **Marker prefix** — change `HM` to whatever two letters you like (`SP` for SPARK, `WP` for waypoint, etc.)
-- **Marker color** — index into the game's marker color palette
-- **Brightness** — slider, sets opacity for both the TGP HUD and the HMD
+- **Marker prefix** — change `HM` to whatever two letters you like (We use aviator First/Last initial to differentiate)
 - **Step/smooth threshold** — five preset buttons (all step / 1 / 2 / 3 / all smooth) and a custom field
 - **Smooth zoom rate** — how fast smooth zoom proceeds
 - **Dynamic smoothing** — on/off plus a strength slider
 - **Terrain avoidance mode** — on / sound-off / off
-- **Crosshair image** — name of an imageset entry to swap the reticle texture
 
-All these save to a per-pilot file under your profile. They stick across sessions, and can be reset by clicking Cancel + closing without saving.
+All these save to a per-pilot file under your profile. They stick across sessions, and can be reset by clicking Cancel + closing without saving. They also save between airframes.
 
 ---
 
@@ -232,41 +240,41 @@ All these save to a per-pilot file under your profile. They stick across session
 
 #### What it is
 
-Out-the-window aviation chrome. Press **`Shift+H`** while you're in the pilot seat and a HUD overlay paints itself over your normal forward view. Think of it as the symbology you'd see on a real HMD — heading, attitude, altitude, airspeed, fuel, weapon info, and a few worldspace symbols floating over real positions in the world.
+Aviation Display. Press **`Shift+H`** while you're in the pilot seat and a HUD overlay paints itself over your normal forward view. Think of it as the symbology you'd see on a real HMD — heading, attitude, altitude, airspeed, fuel, weapon info, and a few worldspace symbols to assist with situational awareness.
 
-The HMD **hides automatically when the TGP is open** and **comes back automatically when the TGP closes** — if you'd toggled it on. State is sticky: turn it on once, it'll keep coming back across TGP cycles.
+The HMD **hides automatically when the TGP is open** and **comes back automatically when the TGP closes** — if you'd toggled it on. 
 
 #### What you see
 
-**Top of the view** — a compass scroller. The tape slides under a fixed caret, so the heading you're flying is always under the pointer. To the left of the caret you read `HDG 273` (current aircraft heading); separately, `EYE 281` shows where your head is pointing (aircraft heading + neck twist).
+**Top of the view** — a compass scroller. Above it you read `HDG 273` (current aircraft heading); separately, `EYE 281` shows where your head is pointing (aircraft heading + neck twist).
 
-**Center-left** — pitch and roll in numbers (`PIT +03  ROL -12`), plus a horizon bar that rolls and pitches in real time. A vertical pitch ladder runs alongside the horizon, calibrated to roughly 3 pixels per degree.
+**Pitch/Roll Ladder** — A vertical pitch/roll ladder is across the middle. This goes to a maximum of 60 degrees of pitch, and 90 degrees of roll. The center lines up with the right side caret for 0 pitch/roll. 
 
-**Vertical strip on one side** — a VSI (vertical speed indicator). Caret rides up or down off a fixed zero baseline as your climb/sink rate changes. Below a configurable sink threshold (default −5 m/s), the caret tints **red** — visual cue you're descending hard.
+**VSI** — Vertical Speed Indicator. Caret rides up or down off a fixed zero baseline as your climb/sink rate changes. Below a configurable sink threshold (default −5 m/s), the caret tints **red**.
 
-**Airspeed readout** — just the number, in knots. Indicated airspeed convention (horizontal-only — climbing straight up doesn't inflate it).
+**Airspeed readout** — To the left of the Pitch/Roll. Displays speed in knots.
 
-**Fuel time** — text label showing time-to-empty at current burn rate. Reads `FUEL 14:32` normally; when remaining time drops below 10 minutes, it switches to `BINGO 04:58`. When you're hovering / refueling / fuel isn't flowing, it shows `FUEL --:--` until the sample stabilizes.
+**Fuel time** — text label showing time-to-empty at current burn rate. Reads `FUEL 14:32` normally; when remaining time drops below 10 minutes, it switches to `BINGO 04:58`. 
 
 **Weapon name + ammo** — current weapon and the round count. Shows `NO WEP` if the aircraft doesn't have a pilot-controlled weapon.
 
-#### CCIP — where your rounds will land
+#### CCIP — Continuously Computed Impact Point 
 
 When the aircraft has a weapon and the HMD's up, the **CCIP pipper** floats in the forward view at the spot where the rounds (or rockets) are predicted to impact — accounting for gravity, drag, your aircraft's motion, and the weapon's actual ballistics.
 
 There are two shapes:
 
-- **Rocket I-beam** — appears when you're armed with Hydra-70 / LAU / S5 / S8. Uses motor-burn integration.
-- **Gun/cannon crosshair** — appears when you're on M134 / GAU-17 / GAU-19 / GAU-21 / M230 / M242 / chain gun. Uses ballistic integration with per-weapon muzzle velocity and drag values lifted directly from the in-game ammo data.
+- **Rocket I-beam** — appears when you're armed with Hydra-70 / LAU / S5 / S8. 
+- **Gun/cannon crosshair** — appears when you're on M134 / GAU-17 / GAU-19 / GAU-21 / M230 / M242 / chain gun. 
 
-Only one pipper shows at a time. When you cycle weapons, the old pipper hides immediately and the new one comes up — no stale crosshair from your last weapon.
+Only one pipper shows at a time. When you cycle weapons, the old pipper hides immediately.
 
 > [!WARNING]
 > If the pipper would land beyond engagement range (3 km default), or behind the camera, it hides. **Don't trust a pipper you can't see.**
 
-#### Waypoint indicator — three modes
+#### Flight Computer
 
-A worldspace chevron that points at a "current waypoint" plus a label with the heading, distance, and time-of-flight at current speed. **`Shift+O`** cycles the source of that waypoint.
+A visual indicator that points at a "current waypoint" plus a label with the heading, distance, and time-of-flight at current speed. **`Shift+O`** cycles the source of that waypoint.
 
 ##### Mode 1 — `WP` (single waypoint, yours)
 
@@ -275,27 +283,33 @@ You set one waypoint, the chevron points at it. Two ways to set:
 - **`NumPad 7`** opens a grid dialog. Type 6 or 8 digits, hit Enter, done.
 - **`NumPad 8`** opens the map. Click where you want. **`NumPad 9`** confirms.
 
-This is per-pilot — your waypoint, only your HMD sees it.
+Only your HMD sees this.
 
-##### Mode 2 — `RTE` (route, auto-discovered)
-
-The HMD reads `AFR`, `CP` (checkpoint), `HLZ` (landing zone), and `C` (chalk) markers from the map and builds a route. The chevron points at the next leg. As you fly, the route auto-advances — drop within capture radius of a leg and the next one becomes the target. Time-of-flight under 10 seconds also auto-advances at CPs.
-
-- **`Shift+X`** — cycle destination type (RP / BP / HA / HLZ)
-- **`Shift+C`** — cycle chalks at the selected LZ
-- **`Shift+N`** — force advance to next leg if the automatic capture doesn't trigger (you flew around the CP instead of through it, for instance)
-
-The route is **shared via map markers** — anyone with the right markers placed and the same faction sees the same route on their HMD. No mod-side replication, just map data.
-
-##### Mode 3 — `TGT` (TGP's selected target slot)
+##### Mode 2 — `TGT` (TGP's selected target slot)
 
 The chevron points at whichever target slot you currently have selected in the TGP. Useful for cueing weapons or maintaining situational awareness on a stored target while flying head-out.
 
 Each mode has its own empty-state message (`NO WAYPOINT SET` / `NO ROUTE DATA` / `NO TARGET DATA`).
 
+##### Mode 3 — `RTE` (Routing System, Auto Discovered)
+
+The HMD reads `AFR`(Army Flight Route), `ACP` (checkpoint),`CP` (Control Point/Start Point),`BP/HA`(Battle Position/Holding Area),`RP`(Release Point), `HLZ` (landing zone), and `C` (chalk) markers from the map and builds a route. The chevron points at the next leg. As you fly, the route auto-advances,
+
+INSERT DIAGRAM HERE.
+
+
+- **`Shift+X`** — cycle destination type (RP / BP / HA / HLZ / Chalk)
+- **`Shift+C`** — cycle chalks at the selected LZ
+- **`Shift+N`** — force advance to next leg if the automatic capture doesn't trigger (you flew around the CP instead of through it, for instance)
+
+The route is **shared via map markers** — anyone with the right markers placed and the same faction sees the same route on their HMD. 
+
+Each mode has its own empty-state message (`NO WAYPOINT SET` / `NO ROUTE DATA` / `NO TARGET DATA`).
+
+
 #### TGP aim icon — the small floating dot
 
-When the TGP is geolocked or aim-locked, the HMD draws a small icon at the **screen position** of where the TGP is looking. So you can fly head-up and still see where your camera is pointing. The icon hides if the TGP isn't currently pointing at anything specific.
+Shows the current position of the TGP through your HMD.
 
 #### Slew TGP to waypoint — `NumPad 6`
 
@@ -307,7 +321,7 @@ Press it and the TGP slews to whatever the HMD's current waypoint is. Works in a
 
 A few things cross over between the TGP and the HMD:
 
-- **Brightness** — the slider in the TGP settings dialog dims both the TGP HUD and the HMD overlay. One control, both surfaces.
+
 - **Target slots** — the HMD's TGT-mode waypoint reads from the TGP's selected target slot. Store a target in the TGP, switch HMD to TGT mode, and you have a chevron pointing at it.
 - **TGP aim point** — the HMD draws a small icon at the TGP's current world aim. Lets you fly head-up and still know where the pod is looking.
 - **TGP-active hides HMD** — the HMD overlay despawns when the TGP camera comes up, so your forward view isn't cluttered while you're looking through the pod. Closing the TGP brings the HMD straight back (state preserved).
