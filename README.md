@@ -1,6 +1,5 @@
 <div align="center">
 
-# Aircraft-Systems
 
 [![Discord](https://img.shields.io/discord/0?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/YhQgs2ucGY)
 [![License](https://img.shields.io/badge/License-APL-blue)](https://github.com/10thrangerregiment-dev/Aircraft-Systems?tab=License-1-ov-file)
@@ -8,7 +7,11 @@
 
 </div>
 
-#Current systems:
+**The 10th Ranger Regiment is happy to present Aircraft Systems. The goal of this mod is to bridge the gap between aviation in Arma 3 and Arma Reforger. This mod provides data systems, situational awareness, and general quality of life to aircraft.**
+
+**These features are packaged together and work with each other. However, developers may unlink features to their liking.**
+
+**Current Features:
 
 # Targeting Pod (TGP)
 - Pilot Accessible,full-screen camera that retains flight and weapons control. 
@@ -41,6 +44,10 @@
     - Automatically develops Flight Route per internal specifications 
   - WP System (Grid OR Map WP)
   - TGT System (From TGP stored target data)
+
+
+
+  
 
 
 
