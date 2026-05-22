@@ -47,6 +47,23 @@
 
 
 
+# Installation
+
+AC comes prepackaged on specific airframes, they may be found in their different dependancy configurations below:
+
+
+# Dependancies
+
+- Aircraft Systems - Core 
+  - None
+  - NOTE: Lacks IR Sparkle & Thermal Capability
+
+- Aircraft Systems - Utility
+  - RHS / Thermal Post Process / IZLID
+
+
+
+
   
 
 
