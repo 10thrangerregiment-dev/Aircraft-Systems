@@ -1,7 +1,7 @@
 <div align="center">
 **Aircraft Systems**
 
-[![Discord](https://img.shields.io/discord/0?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/YhQgs2ucGY)
+[![Discord](https://img.shields.io/discord/1363054298736492694?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/YhQgs2ucGY)
 [![License](https://img.shields.io/badge/License-APL-blue)](https://github.com/10thrangerregiment-dev/Aircraft-Systems?tab=License-1-ov-file)
 [![Credits](https://img.shields.io/badge/Credits-View-green)](https://github.com/10thrangerregiment-dev/Aircraft-Systems/blob/main/credits)
 
