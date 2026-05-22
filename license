@@ -1,8 +1,43 @@
-All original assets and systems in this mod are licensed under APL (Arma Public License). You may modify and redistribute them under the terms of that license: https://www.bohemia.net/community/licenses
+#  Credits & License
 
-Dependencies retain their original creators' licensing. See below:
+A massive thank you to everyone who made Aircraft Systems possible. This mod doesn't exist without the people below.
 
-RHS: Status Quo — EULA: https://docs.rhsmods.org/rhs-status-quo-user-documentation/arma-reforger/rhs-status-quo/eula
+##  Contributors
 
-Thermal Post Process — APL-ND: https://www.bohemia.net/community/licenses
+| Contributor | Role |
+|---|---|
+| **Gaz** | UI |
+| **Frost** | Testing & References |
+| **Hush** | Testing & References |
+| **Cage** | Testing & References |
+| **Mandas** | Testing & References |
+| **Bader** | Testing & References |
+| **Garrison** | Testing & References |
+| **Milkman** | Spiritual Guide |
+| **10th Ranger Regiment — Task Force Apollo** | Testing & Validation |
 
+---
+
+## 📜 License
+
+All original assets and systems in this mod are licensed under **APL (Arma Public License)**. You may modify and redistribute them under the terms of that license.
+
+🔗 [https://www.bohemia.net/community/licenses](https://www.bohemia.net/community/licenses)
+
+---
+
+## 🔗 Dependencies & Their Licensing
+
+This mod stands on the shoulders of some excellent work by others. Each dependency retains its original creator's licensing — please respect it.
+
+| Dependency | Used For | License |
+|---|---|---|
+| **[Red Hammer Studios — Status Quo](https://docs.rhsmods.org/rhs-status-quo-user-documentation/arma-reforger/rhs-status-quo/eula)** | IR & Thermal systems | [RHS EULA](https://docs.rhsmods.org/rhs-status-quo-user-documentation/arma-reforger/rhs-status-quo/eula) |
+| **Thermal Post Process** | Thermal systems | [APL-ND](https://www.bohemia.net/community/licenses) |
+| **WCS** | Weapons | *Refer to creator* |
+| **Tonic's MH-6J** | Airframe | *Refer to creator* |
+| **Arwenz's MH-60 Tweaks** | Airframe | *Refer to creator* |
+
+---
+
+*If your name should be on this list and isn't, hop in the [Discord](https://discord.gg/YhQgs2ucGY) and let us know.*
