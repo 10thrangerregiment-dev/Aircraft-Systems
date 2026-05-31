@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="https://cdn.discordapp.com/attachments/941510112328159305/1510788495428550856/AviationSystems.png?ex=6a1e16ee&is=6a1cc56e&hm=462dcaa12c5d6c31358603950e19f9038d5604c4047e44e4b0f0f5bf10d44fd3&" alt="Aircraft Systems" width="600">
+
 # Aircraft Systems
 
 [![Discord](https://img.shields.io/discord/1363054298736492694?label=Discord&logo=discord&logoColor=white&color=5865F2)](https://discord.gg/YhQgs2ucGY)
