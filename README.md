@@ -60,17 +60,25 @@ If you're a mod developer integrating Aircraft Systems into your own aircraft, s
 
 | Variant | Dependencies | Features |
 |---|---|---|
-| **Aircraft Systems — Core** | None | Full TGP and HMD functionality **except** IR Sparkle and Thermal |
-| **Aircraft Systems — Utility** | RHS: Status Quo, Thermal Post Process, IZLID | Everything, including IR Sparkle and Thermal |
-
+| **Aircraft Systems — Core** | None | Full TGP and HMD functionality **except** IR Sparkle and Thermal | Green Beam Sparkle
+| **Aircraft Systems — RHS Compat** | RHS: Status Quo, Thermal Post Process | Everything, including IR Sparkle and Thermal |
+| **Aircraft Systems — NVS Compat** | Night Vision System, Thermal Post Process Assets | Everything, including IR Sparkle and Thermal | 
 > [!NOTE]
 > Pick **Core** if you want a lightweight install with no third-party mod dependencies. Pick **Utility** if you want the full feature set — thermal optics and a working IR sparkle for night ops.
 
+### Support Aircraft
+
+
+> [!NOTE]
+> Due to 1.7, this is pretty bare. As things come back online, there will be more. 
 ---
 
 ## 📡 Operator's Guide
 
 > A pilot's walkthrough of the Targeting Pod and Helmet-Mounted Display. Read it once, fly with it open the second time.
+
+> [!IMPORTANT]
+> **It is HIGHLY recomended that everything is rebound. Most choices were made for debugging, through use a 12 button MMO mouse.
 
 ### 📋 Table of Contents
 
@@ -109,7 +117,7 @@ If you're a mod developer integrating Aircraft Systems into your own aircraft, s
 
 #### What it is
 
-Sit in the pilot seat, wait about a second and a half after the door closes, and press **`T`**. The screen swaps from your normal pilot view to a stabilized camera looking out from the aircraft's gimbal. This pod comes with many features to aid in ISR/SA.
+Sit in the pilot seat and press **`T`**. The screen swaps from your normal pilot view to a stabilized camera looking out from the aircraft's gimbal. This pod comes with many features to aid in ISR/SA.
 
 Press **`T`** again to come back to the cockpit.
 
@@ -227,7 +235,7 @@ The TGP looks ahead from the front of the helicopter for obstacles. If the helic
 Opens a dialog (only works when the TGP is up) with:
 
 - **Marker prefix** — change `HM` to whatever two letters you like (We use aviator First/Last initial to differentiate)
-- **Step/smooth threshold** — five preset buttons (all step / 1 / 2 / 3 / all smooth) and a custom field
+- **Step/smooth threshold** — five preset buttons (all step / 45 / 30 / 15 / all smooth). This dictates where step->smoothing transition happens. If you want to step through the far out zooms, and have smoothing in from there, pick a lower option.
 - **Smooth zoom rate** — how fast smooth zoom proceeds
 - **Dynamic smoothing** — on/off plus a strength slider
 - **Terrain avoidance mode** — on / sound-off / off
@@ -236,7 +244,7 @@ All these save to a per-pilot file under your profile. They stick across session
 
 ---
 
-### Part 2 — The Helmet-Mounted Display (HMD)
+### Part 2 —  Helmet-Mounted Display (HMD)
 
 #### What it is
 
@@ -270,7 +278,7 @@ There are two shapes:
 Only one pipper shows at a time. When you cycle weapons, the old pipper hides immediately.
 
 > [!WARNING]
-> If the pipper would land beyond engagement range (3 km default), or behind the camera, it hides. **Don't trust a pipper you can't see.**
+> If the pipper would land beyond engagement range (3 km default), or behind the camera, it hides. 
 
 #### Flight Computer
 
@@ -291,11 +299,45 @@ The chevron points at whichever target slot you currently have selected in the T
 
 Each mode has its own empty-state message (`NO WAYPOINT SET` / `NO ROUTE DATA` / `NO TARGET DATA`).
 
-##### Mode 3 — `RTE` (Routing System, Auto Discovered)
-
-The HMD reads `AFR`(Army Flight Route), `ACP` (checkpoint),`CP` (Control Point/Start Point),`BP/HA`(Battle Position/Holding Area),`RP`(Release Point), `HLZ` (landing zone), and `C` (chalk) markers from the map and builds a route. The chevron points at the next leg. As you fly, the route auto-advances,
-
-INSERT DIAGRAM HERE.
+# Mode 3 - 'RTE' (Route Flight Computer)
+ 
+The Helmet-Mounted Display (HMD) reads route markers placed on the map, links them into an ordered flight route, and guides the aircraft along it. The directional chevron always points toward the next leg, and the route **auto-advances** as each waypoint is reached.
+ 
+## How It Works
+ 
+1. Place the supported markers on the map.
+2. The HMD reads them and assembles a route, using the `AFR` marker to name the route and tie the markers together.
+3. In flight, the chevron points at the next leg.
+4. As you pass each waypoint, the route advances automatically to the next step.
+## Marker Reference
+ 
+| Marker   | Name                              | Role                                                                 |
+|----------|-----------------------------------|----------------------------------------------------------------------|
+| `AFR`    | Army Flight Route                 | Defines the route name and links all markers into one route.         |
+| `CP`     | Control Point / Start Point       | The first step (waypoint) of the route.                              |
+| `ACP`    | Air Control Point (checkpoint)    | Intermediate checkpoints along the route, sequentially enumerated.   |
+| `BP/HA`  | Battle Position / Holding Area    | Staging/holding waypoint along the route.                            |
+| `RP`     | Release Point                     | Where aircraft leave the route and proceed to the final destination. |
+| `HLZ`    | Helicopter Landing Zone           | Defines the landing zone; the landing point itself when no chalks exist. |
+| `C`      | Chalk                             | Links to an `HLZ` to define an individual landing area per chalk.    |
+ 
+## Route Construction
+ 
+The route is built in the following order:
+ 
+- **`AFR`** — Names the route and links the markers together. Required.
+- **`CP`** — The starting waypoint, evaluated as the first step.
+- **`ACP`** — Additional checkpoints between the start and the release point. Numbered in sequence (`ACP 1`, `ACP 2`, …) and followed in order.
+- **`BP/HA`** — A holding or staging waypoint along the route.
+- **`RP`** — Marks where the aircraft leaves the route. After the `RP`, the next step is the destination.
+- **`HLZ`** — The destination zone. When no chalks are defined, the `HLZ` marker is the landing point.
+- **`C`** — Chalks link to an `HLZ` and assign each chalk its own landing area within that zone.
+## Minimum Requirements
+ 
+A valid route requires at minimum:
+ 
+- An **`AFR`** marker (to name and link the route), and
+- An **endpoint** (an `HLZ`, or another marker that serves as the final destination)
 
 
 - **`Shift+X`** — cycle destination type (RP / BP / HA / HLZ / Chalk)
