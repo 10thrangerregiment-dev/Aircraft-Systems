@@ -50,6 +50,9 @@ Out-the-window symbology layered over your forward view.
   - **WP system** — single waypoint by grid or map pick
   - **TGT system** — pulls from your TGP's stored targets
 
+  > [!NOTE]
+  > This system by design supresses all other HUDs/Gauges. Things will continue to be added as the need is determined. 
+
 ---
 
 ## 📦 Installation
