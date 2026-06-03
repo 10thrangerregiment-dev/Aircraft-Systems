@@ -445,7 +445,7 @@ You probably pressed `Shift+M` to open the map but haven't pressed `NumPad 1` to
 <details>
 <summary><b>My TGP settings reset.</b></summary>
 
-The settings file lives under your game profile at `$profile:RR10_TGP/settings.json`. If your profile moved or got wiped, defaults come back. The mod also bumps the file version when its schema changes — a one-time prompt-free migration that fills new fields with defaults; old custom values survive.
+The settings file lives under your game profile at `$profile:RR10_TGP/settings.json`. If your profile moved or got wiped, defaults come back. 
 </details>
 
 <details>
@@ -464,7 +464,7 @@ A few possibilities:
 - The predicted impact is beyond 3 km
 - It'd land behind the camera
 
-The pipper hides rather than lie.
+The pipper hides when an in-view firing solution cannot be resolved. 
 </details>
 
 <details>
